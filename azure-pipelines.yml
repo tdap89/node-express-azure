@@ -1,29 +1,23 @@
-trigger:
-- master
-
-pool:
-  vmImage: 'Ubuntu-16.04'
-
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '8.x'
-  displayName: 'Install Node.js'
-
-- script: |
-    npm install
-  displayName: 'npm install'
-
-- script: |
-    npm test
-  displayName: 'npm test'
-
-- task: ArchiveFiles@2
-  displayName: 'Archive files'
-  inputs:
-    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
-    includeRootFolder: false
-
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish artifacts: drop'
+{
+  "name": "node-express-azure",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "build": "npm install",
+    "test": "mocha --exit",
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "*",
+    "express-handlebars": ">=4.7.7"
+  },
+  "devDependencies": {
+    "mocha": "5.2.0",
+    "chai": "4.2.0",
+    "chai-http": "4.2.0"
+  }
+}
   
